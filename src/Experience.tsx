@@ -10,8 +10,11 @@ function Experience() {
 
     return (
         <>
+            {/* Utilities */}
             {showPerf && <Perf position="top-left" />}
             <OrbitControls />
+
+            {/* Scene */}
             <mesh>
                 <boxGeometry />
                 <meshNormalMaterial />
