@@ -4,7 +4,12 @@ import "./style.css";
 import { useControls } from "leva";
 import ConeVehicle from "./Vehicle";
 import { Wander } from "./Wander";
-import { ASCII, EffectComposer } from "@react-three/postprocessing";
+import {
+    ASCII,
+    EffectComposer,
+    Outline,
+    Pixelation,
+} from "@react-three/postprocessing";
 
 function Experience() {
     const { showPerf } = useControls("debug", {
@@ -15,6 +20,14 @@ function Experience() {
         fontSize: { value: 64, min: 8, max: 256, step: 2 },
         cellSize: { value: 8, min: 2, max: 256, step: 2 },
     });
+
+    const { granularity, enabled: pixelationEnabled } = useControls(
+        "pixelation",
+        {
+            enabled: false,
+            granularity: { value: 8, min: 2, max: 32, step: 1 },
+        }
+    );
 
     const VEHICLE_COUNT = 200;
 
@@ -28,6 +41,7 @@ function Experience() {
             <color attach="background" args={["black"]} />
             <EffectComposer>
                 <ASCII fontSize={fontSize} cellSize={cellSize} />
+                {pixelationEnabled && <Pixelation granularity={granularity} />}
             </EffectComposer>
 
             {/* Scene */}
