@@ -5,6 +5,7 @@ import { useControls } from "leva";
 import ConeVehicle from "./Vehicle";
 import { Wander } from "./Wander";
 import { ASCII, EffectComposer, Pixelation } from "@react-three/postprocessing";
+import TargetVehicle from "./Target";
 
 function Experience() {
     const { showPerf } = useControls("debug", {
@@ -29,9 +30,13 @@ function Experience() {
         }
     );
 
-    const { vehicleCount } = useControls("vehicles", {
-        vehicleCount: { value: 200, min: 1, max: 1000, step: 1 },
-    });
+    const { count: vehicleCount, target: vehicleTarget } = useControls(
+        "vehicles",
+        {
+            count: { value: 200, min: 1, max: 1000, step: 1 },
+            target: false,
+        }
+    );
 
     return (
         <>
@@ -60,6 +65,7 @@ function Experience() {
                         ]}
                     />
                 ))}
+                {vehicleTarget && <TargetVehicle />}
             </Wander>
         </>
     );
