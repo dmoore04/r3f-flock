@@ -1,4 +1,4 @@
-import { useLayoutEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { useYuka } from "./useYuka";
 import { Vehicle } from "yuka";
 
@@ -6,8 +6,9 @@ export default function ConeVehicle(props) {
     const [ref] = useYuka({ type: Vehicle, ...props });
     const geoRef = useRef();
 
-    useLayoutEffect(() => {
+    useEffect(() => {
         geoRef.current.rotateX(Math.PI / 2);
+        return () => geoRef.current.rotateX(-Math.PI / 2);
     });
 
     return (
