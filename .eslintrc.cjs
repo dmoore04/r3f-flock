@@ -17,7 +17,7 @@ module.exports = {
     plugins: ["react", "react-refresh"],
     rules: {
         "react-refresh/only-export-components": "warn",
-        "react/no-unknown-property": ["error", { ignore: ["object"] }],
+        "react/no-unknown-property": "off",
         "react-hooks/exhaustive-deps": "off",
         "react/react-in-jsx-scope": "off",
     },

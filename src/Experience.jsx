@@ -2,6 +2,8 @@ import { OrbitControls } from "@react-three/drei";
 import { Perf } from "r3f-perf";
 import "./style.css";
 import { useControls } from "leva";
+import ConeVehicle from "./Vehicle";
+import { Wander } from "./useYuka";
 
 function Experience() {
     const { showPerf } = useControls("debug", {
@@ -15,10 +17,10 @@ function Experience() {
             <OrbitControls />
 
             {/* Scene */}
-            <mesh>
-                <boxGeometry />
-                <meshNormalMaterial />
-            </mesh>
+            <Wander>
+                <ConeVehicle />
+                <ConeVehicle position={[-3, 0, -3]} />
+            </Wander>
         </>
     );
 }
