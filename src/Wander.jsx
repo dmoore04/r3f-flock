@@ -14,7 +14,7 @@ export function Wander({ children }) {
             const wanderBehaviour = new WanderBehavior();
             vehicle.steering.add(wanderBehaviour);
         });
-    }, [mgr.entities]);
+    }, [mgr.entities, children]);
 
     useFrame((_, delta) => mgr.update(delta));
 

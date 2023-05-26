@@ -17,8 +17,8 @@ function Experience() {
         enabled: asciiEnabled,
     } = useControls("ascii", {
         enabled: true,
-        fontSize: { value: 64, min: 8, max: 1280, step: 2 },
-        cellSize: { value: 8, min: 2, max: 1280, step: 2 },
+        fontSize: { value: 64, min: 8, max: 256, step: 2 },
+        cellSize: { value: 8, min: 2, max: 256, step: 2 },
     });
 
     const { granularity, enabled: pixelationEnabled } = useControls(
@@ -29,7 +29,9 @@ function Experience() {
         }
     );
 
-    const VEHICLE_COUNT = 200;
+    const { vehicleCount } = useControls("vehicles", {
+        vehicleCount: { value: 200, min: 1, max: 1000, step: 1 },
+    });
 
     return (
         <>
@@ -48,7 +50,7 @@ function Experience() {
 
             {/* Scene */}
             <Wander>
-                {Array.from({ length: VEHICLE_COUNT }, (_, i) => (
+                {Array.from({ length: vehicleCount }, (_, i) => (
                     <ConeVehicle
                         key={i}
                         position={[
