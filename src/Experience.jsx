@@ -4,21 +4,21 @@ import "./style.css";
 import { useControls } from "leva";
 import ConeVehicle from "./Vehicle";
 import { Wander } from "./Wander";
-import {
-    ASCII,
-    EffectComposer,
-    Outline,
-    Pixelation,
-} from "@react-three/postprocessing";
+import { ASCII, EffectComposer, Pixelation } from "@react-three/postprocessing";
 
 function Experience() {
     const { showPerf } = useControls("debug", {
         showPerf: false,
     });
 
-    const { fontSize, cellSize } = useControls("ascii", {
-        fontSize: { value: 64, min: 8, max: 256, step: 2 },
-        cellSize: { value: 8, min: 2, max: 256, step: 2 },
+    const {
+        fontSize,
+        cellSize,
+        enabled: asciiEnabled,
+    } = useControls("ascii", {
+        enabled: true,
+        fontSize: { value: 64, min: 8, max: 1280, step: 2 },
+        cellSize: { value: 8, min: 2, max: 1280, step: 2 },
     });
 
     const { granularity, enabled: pixelationEnabled } = useControls(
@@ -40,7 +40,9 @@ function Experience() {
             {/* Effects */}
             <color attach="background" args={["black"]} />
             <EffectComposer>
-                <ASCII fontSize={fontSize} cellSize={cellSize} />
+                {asciiEnabled && (
+                    <ASCII fontSize={fontSize} cellSize={cellSize} />
+                )}
                 {pixelationEnabled && <Pixelation granularity={granularity} />}
             </EffectComposer>
 
