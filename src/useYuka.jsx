@@ -1,39 +1,11 @@
-import React, {
-    useRef,
-    useEffect,
-    useState,
-    useContext,
-    createContext,
-} from "react";
-import { useFrame } from "@react-three/fiber";
-import { GameEntity, EntityManager, WanderBehavior, Vehicle } from "yuka";
-import PropTypes from "prop-types";
-
-const context = createContext();
-
-export function Wander({ children }) {
-    const [mgr] = useState(() => new EntityManager(), []);
-
-    useEffect(() => {
-        const vehicles = mgr.entities.filter((item) => item instanceof Vehicle);
-
-        const wanderBehaviour = new WanderBehavior(6, 0.5, 24);
-        vehicles.forEach((vehicle) => vehicle.steering.add(wanderBehaviour));
-    }, [mgr.entities]);
-
-    useFrame((_, delta) => mgr.update(delta));
-
-    return <context.Provider value={mgr}>{children}</context.Provider>;
-}
-
-Wander.propTypes = {
-    children: PropTypes.node,
-};
+import { useRef, useEffect, useState, useContext } from "react";
+import { GameEntity } from "yuka";
+import managerContext from "./context/entityManager";
 
 export function useYuka({ type = GameEntity, position = [0, 0, 0] }) {
     // This hook makes set-up re-usable
     const ref = useRef();
-    const mgr = useContext(context);
+    const mgr = useContext(managerContext);
     const [entity] = useState(() => new type());
 
     useEffect(() => {
