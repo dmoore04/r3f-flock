@@ -5,6 +5,7 @@ import managerContext from "./context/entityManager";
 export function useYuka({
     type = GameEntity,
     position = [0, 0, 0],
+    rotation = [0, 0, 0],
     name = "unnamed",
 }) {
     // This hook makes set-up re-usable
@@ -15,7 +16,7 @@ export function useYuka({
     useEffect(() => {
         entity.name = name;
         entity.position.set(...position);
-        entity.rotation.fromEuler(0, 2 * Math.PI * Math.random(), 0);
+        entity.rotation.fromEuler(...rotation);
         entity.setRenderComponent(ref, (entity) => {
             ref.current.position.copy(entity.position);
             ref.current.quaternion.copy(entity.rotation);

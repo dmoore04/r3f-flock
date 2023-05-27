@@ -8,6 +8,7 @@ import { ASCII, EffectComposer, Pixelation } from "@react-three/postprocessing";
 import TargetVehicle from "./Target";
 
 function Experience() {
+    /* Controls */
     const { showPerf } = useControls("debug", {
         showPerf: false,
     });
@@ -62,6 +63,11 @@ function Experience() {
                             (Math.random() - 0.5) * 16,
                             0,
                             (Math.random() - 0.5) * 8,
+                        ]}
+                        rotation={[
+                            Math.random() * Math.PI * 2,
+                            Math.random() * Math.PI * 2,
+                            0,
                         ]}
                     />
                 ))}
