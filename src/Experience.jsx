@@ -5,7 +5,6 @@ import { useControls } from "leva";
 import ConeVehicle from "./Vehicle";
 import { Wander } from "./Wander";
 import { ASCII, EffectComposer, Pixelation } from "@react-three/postprocessing";
-import TargetVehicle from "./Target";
 import { useRef, useState } from "react";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
@@ -35,13 +34,8 @@ function Experience() {
         }
     );
 
-    const {
-        count: vehicleCount,
-        target: vehicleTarget,
-        wander3d,
-    } = useControls("vehicles", {
+    const { count: vehicleCount, wander3d } = useControls("vehicles", {
         count: { value: 200, min: 1, max: 1000, step: 1 },
-        target: false,
         wander3d: false,
     });
 
@@ -100,7 +94,6 @@ function Experience() {
                             ]}
                         />
                     ))}
-                    {vehicleTarget && <TargetVehicle />}
                 </group>
             </Wander>
         </>
