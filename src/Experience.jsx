@@ -6,8 +6,12 @@ import ConeVehicle from "./Vehicle";
 import { Wander } from "./Wander";
 import { ASCII, EffectComposer, Pixelation } from "@react-three/postprocessing";
 import TargetVehicle from "./Target";
+import { useRef, useState } from "react";
+import { useFrame } from "@react-three/fiber";
+import * as THREE from "three";
 
 function Experience() {
+    const vehicles = useRef();
     /* Controls */
     const { showPerf } = useControls("debug", {
         showPerf: false,
@@ -41,6 +45,28 @@ function Experience() {
         wander3d: false,
     });
 
+    const { follow } = useControls("camera", {
+        follow: { value: -1, min: -1, max: vehicleCount - 1, step: 1 },
+    });
+
+    const [smoothedCameraPosition] = useState(() => new THREE.Vector3());
+    const [smoothedCameraTarget] = useState(() => new THREE.Vector3());
+
+    useFrame((state, delta) => {
+        if (follow !== -1) {
+            const vehiclePosition = vehicles.current?.children[follow].position;
+            const cameraPosition = new THREE.Vector3();
+            cameraPosition.copy(vehiclePosition);
+            cameraPosition.y -= 6;
+
+            smoothedCameraPosition.lerp(cameraPosition, 2 * delta);
+            smoothedCameraTarget.lerp(vehiclePosition, 2 * delta);
+
+            state.camera.position.copy(smoothedCameraPosition);
+            state.camera.lookAt(smoothedCameraTarget);
+        }
+    });
+
     return (
         <>
             {/* Utilities */}
@@ -58,22 +84,24 @@ function Experience() {
 
             {/* Scene */}
             <Wander>
-                {Array.from({ length: vehicleCount }, (_, i) => (
-                    <ConeVehicle
-                        key={i}
-                        position={[
-                            (Math.random() - 0.5) * 16,
-                            0,
-                            (Math.random() - 0.5) * 8,
-                        ]}
-                        rotation={[
-                            wander3d ? Math.random() * Math.PI : 0,
-                            Math.random() * Math.PI * 2,
-                            0,
-                        ]}
-                    />
-                ))}
-                {vehicleTarget && <TargetVehicle />}
+                <group ref={vehicles}>
+                    {Array.from({ length: vehicleCount }, (_, i) => (
+                        <ConeVehicle
+                            key={i}
+                            position={[
+                                (Math.random() - 0.5) * 16,
+                                0,
+                                (Math.random() - 0.5) * 8,
+                            ]}
+                            rotation={[
+                                wander3d ? Math.random() * Math.PI : 0,
+                                Math.random() * Math.PI * 2,
+                                0,
+                            ]}
+                        />
+                    ))}
+                    {vehicleTarget && <TargetVehicle />}
+                </group>
             </Wander>
         </>
     );
