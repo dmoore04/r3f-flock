@@ -39,9 +39,13 @@ function Experience() {
         wander3d: false,
     });
 
-    const { follow } = useControls("camera", {
-        follow: { value: -1, min: -1, max: vehicleCount - 1, step: 1 },
-    });
+    const { follow } = useControls(
+        "camera",
+        {
+            follow: { value: -1, min: -1, max: vehicleCount - 1, step: 1 },
+        },
+        [vehicleCount]
+    );
 
     const [smoothedCameraPosition] = useState(() => new THREE.Vector3());
     const [smoothedCameraTarget] = useState(() => new THREE.Vector3());
