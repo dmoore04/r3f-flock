@@ -25,7 +25,7 @@ export function useYuka({
         mgr.add(entity);
 
         return () => mgr.remove(entity);
-    }, []);
+    }, [position, rotation]);
 
     return [ref, entity];
 }

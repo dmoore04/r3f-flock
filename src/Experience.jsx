@@ -31,13 +31,15 @@ function Experience() {
         }
     );
 
-    const { count: vehicleCount, target: vehicleTarget } = useControls(
-        "vehicles",
-        {
-            count: { value: 200, min: 1, max: 1000, step: 1 },
-            target: false,
-        }
-    );
+    const {
+        count: vehicleCount,
+        target: vehicleTarget,
+        wander3d,
+    } = useControls("vehicles", {
+        count: { value: 200, min: 1, max: 1000, step: 1 },
+        target: false,
+        wander3d: false,
+    });
 
     return (
         <>
@@ -65,7 +67,7 @@ function Experience() {
                             (Math.random() - 0.5) * 8,
                         ]}
                         rotation={[
-                            Math.random() * Math.PI * 2,
+                            wander3d ? Math.random() * Math.PI : 0,
                             Math.random() * Math.PI * 2,
                             0,
                         ]}
