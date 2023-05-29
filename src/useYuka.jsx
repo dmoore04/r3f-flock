@@ -17,6 +17,8 @@ export function useYuka({
         entity.name = name;
         entity.position.set(...position);
         entity.rotation.fromEuler(...rotation);
+        entity.updateNeighborhood = true;
+        entity.neighborhoodRadius = 0.7;
         entity.setRenderComponent(ref, (entity) => {
             ref.current.position.copy(entity.position);
             ref.current.quaternion.copy(entity.rotation);
