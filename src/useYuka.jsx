@@ -19,6 +19,8 @@ export function useYuka({
         entity.rotation.fromEuler(...rotation);
         entity.updateNeighborhood = true;
         entity.neighborhoodRadius = 0.7;
+        entity.maxTurnRate = Math.PI * 0.5;
+        entity.maxSpeed = (Math.random() + 0.5) * 1.2;
         entity.setRenderComponent(ref, (entity) => {
             ref.current.position.copy(entity.position);
             ref.current.quaternion.copy(entity.rotation);

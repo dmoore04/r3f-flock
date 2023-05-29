@@ -3,7 +3,7 @@ import { Perf } from "r3f-perf";
 import "./style.css";
 import { useControls } from "leva";
 import ConeVehicle from "./Vehicle";
-import { Wander } from "./Wander";
+import MovementAI from "./MovementAI";
 import { ASCII, EffectComposer, Pixelation } from "@react-three/postprocessing";
 import { useRef, useState } from "react";
 import { useFrame } from "@react-three/fiber";
@@ -80,21 +80,21 @@ function Experience() {
             </EffectComposer>
 
             {/* Scene */}
-            <Wander>
+            <MovementAI>
                 <group ref={vehicles}>
                     {Array.from({ length: vehicleCount }, (_, i) => (
                         <ConeVehicle
                             key={i}
                             position={[
-                                (Math.random() - 0.5) * 16,
-                                0,
-                                (Math.random() - 0.5) * 8,
+                                -6 + (Math.random() - 0.5) * 2,
+                                Math.random() - 0.5,
+                                (Math.random() - 0.5) * 4,
                             ]}
                             rotation={[0, Math.random() * Math.PI * 2, 0]}
                         />
                     ))}
                 </group>
-            </Wander>
+            </MovementAI>
         </>
     );
 }

@@ -12,7 +12,7 @@ import { useFrame, useThree } from "@react-three/fiber";
 import { useControls } from "leva";
 import * as THREE from "three";
 
-export function Wander({ children }) {
+export default function MovementAI({ children }) {
     const [mgr] = useState(() => new EntityManager(), []);
     const [target] = useState(() => new Vehicle());
     const { viewport } = useThree();
@@ -87,6 +87,6 @@ export function Wander({ children }) {
     );
 }
 
-Wander.propTypes = {
+MovementAI.propTypes = {
     children: PropTypes.node,
 };
