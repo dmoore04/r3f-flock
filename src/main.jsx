@@ -1,20 +1,30 @@
-import ReactDOM from "react-dom/client";
-import App from "./Experience.jsx";
+import Flock from "./Flock.jsx";
 import "./style.css";
-import { Canvas } from "@react-three/fiber";
+import { FadeIn, LeftMiddle } from "./layout/styles.js";
+import { Suspense, useState } from "react";
+import { createRoot } from "react-dom/client";
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
+function App() {
+    const [speed, setSpeed] = useState(1.2);
 
-root.render(
-    <Canvas
-        shadows
-        camera={{
-            fov: 45,
-            near: 0.1,
-            far: 200,
-            position: [0, 6, 0],
-        }}
-    >
-        <App />
-    </Canvas>
-);
+    return (
+        <>
+            <Suspense fallback={null}>
+                <Flock speed={speed} />
+                <FadeIn />
+            </Suspense>
+            <LeftMiddle>
+                <input
+                    type="range"
+                    min="0.5"
+                    max="2.4"
+                    value={speed}
+                    step="0.01"
+                    onChange={(e) => setSpeed(Number(e.target.value))}
+                />
+            </LeftMiddle>
+        </>
+    );
+}
+
+createRoot(document.getElementById("root")).render(<App />);
