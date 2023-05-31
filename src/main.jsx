@@ -1,8 +1,9 @@
 import Flock from "./Flock.jsx";
 import "./style.css";
-import { RightMiddle } from "./layout/styles.js";
+import { RightMiddle } from "./layout/styles";
 import { Suspense, useState } from "react";
 import { createRoot } from "react-dom/client";
+import Overlay from "./layout/Overlay.jsx";
 
 function App() {
     const [speed, setSpeed] = useState(1.2);
@@ -12,6 +13,7 @@ function App() {
             <Suspense fallback={null}>
                 <Flock speed={speed} />
             </Suspense>
+            <Overlay />
             <RightMiddle>
                 <span>{speed}</span>
                 <input
