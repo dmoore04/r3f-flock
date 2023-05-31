@@ -59,7 +59,6 @@ Flock.propTypes = {
     speed: PropTypes.number,
     count: PropTypes.number,
     depth: PropTypes.number,
-    easing: PropTypes.func,
 };
 
 export default Flock;
