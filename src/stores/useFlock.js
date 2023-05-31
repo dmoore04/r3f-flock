@@ -10,15 +10,14 @@ export default create(
             behavior: "wave",
             behaviorOptions: ["follow", "wave"],
             nextBehavior: () =>
-                set((state) => {
-                    const currentIndex = state.behaviorOptions.indexOf(
-                        state.behavior
-                    );
+                set(({ behaviorOptions, behavior }) => {
+                    const currentIndex = behaviorOptions.indexOf(behavior);
                     const nextIndex =
-                        currentIndex === state.behaviorOptions.length - 1
+                        currentIndex === behaviorOptions.length - 1
                             ? 0
                             : currentIndex + 1;
-                    return { behavior: state.behaviorOptions[nextIndex] };
+
+                    return { behavior: behaviorOptions[nextIndex] };
                 }),
         };
     })

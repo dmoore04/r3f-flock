@@ -33,3 +33,9 @@ export const TopLeft = styled.div`
     top: 5vw;
     left: 5vw;
 `;
+
+export const TopRight = styled.div`
+    position: absolute;
+    top: 5vw;
+    right: 5vw;
+`;

@@ -1,9 +1,11 @@
-import { TopLeft, Container, RightMiddle } from "./styles";
+import { TopLeft, Container, RightMiddle, TopRight } from "./styles";
 import useFlock from "../stores/useFlock.js";
 
 export default function Overlay() {
     const changeSpeed = useFlock((state) => state.changeSpeed);
     const speed = useFlock((state) => state.speed);
+    const behavior = useFlock((state) => state.behavior);
+    const nextBehavior = useFlock((state) => state.nextBehavior);
 
     return (
         <Container>
@@ -15,6 +17,7 @@ export default function Overlay() {
                 </h1>
                 <p>Software Developer</p>
             </TopLeft>
+            <TopRight onClick={() => nextBehavior()}>{behavior}</TopRight>
             <RightMiddle>
                 <span>{speed}</span>
                 <input
