@@ -13,6 +13,7 @@ function App() {
                 <Flock speed={speed} />
             </Suspense>
             <RightMiddle>
+                <span>{speed}</span>
                 <input
                     type="range"
                     min="0.5"
