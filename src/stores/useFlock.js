@@ -1,5 +1,8 @@
 import { create } from "zustand";
 import { subscribeWithSelector } from "zustand/middleware";
+import behaviors from "../ai/behaviors";
+
+const behaviorOptions = Object.keys(behaviors);
 
 export default create(
     subscribeWithSelector((set) => {
@@ -7,8 +10,8 @@ export default create(
             count: 200,
             speed: 1.2,
             changeSpeed: (newSpeed) => set({ speed: newSpeed }),
-            behavior: "wave",
-            behaviorOptions: ["follow", "wave"],
+            behaviorOptions: behaviorOptions,
+            behavior: behaviorOptions[0],
             nextBehavior: () =>
                 set(({ behaviorOptions, behavior }) => {
                     const currentIndex = behaviorOptions.indexOf(behavior);
