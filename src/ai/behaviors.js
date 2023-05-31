@@ -24,4 +24,9 @@ export default {
             Math.cos(state.clock.elapsedTime) * viewport.height,
         ];
     },
+    cross: (state, viewport) => {
+        const x =
+            (state.clock.elapsedTime % viewport.width) / viewport.width - 0.5;
+        return [x * viewport.width, Math.sin(state.clock.elapsedTime) * 0.5, 0];
+    },
 };
