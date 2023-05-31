@@ -17,4 +17,11 @@ export default {
             Math.sin(state.clock.elapsedTime) * viewport.height,
         ];
     },
+    circle: (state, viewport) => {
+        return [
+            Math.sin(state.clock.elapsedTime) * viewport.width,
+            Math.sin(state.clock.elapsedTime) * 0.5,
+            Math.cos(state.clock.elapsedTime) * viewport.height,
+        ];
+    },
 };
