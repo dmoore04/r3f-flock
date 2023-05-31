@@ -41,6 +41,20 @@ export const TopRight = styled.div`
     text-align: right;
 `;
 
+export const BottomLeft = styled.div`
+    position: absolute;
+    bottom: 5vw;
+    left: 5vw;
+    width: 30ch;
+    max-width: 40%;
+`;
+
+export const BottomRight = styled.div`
+    position: absolute;
+    bottom: 5vw;
+    right: 5vw;
+`;
+
 export const Option = styled.span`
     cursor: pointer;
 `;

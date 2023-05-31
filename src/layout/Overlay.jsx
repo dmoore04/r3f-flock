@@ -1,7 +1,21 @@
-import { TopLeft, Container, RightMiddle, TopRight, Option } from "./styles";
+import {
+    TopLeft,
+    Container,
+    RightMiddle,
+    TopRight,
+    Option,
+    BottomLeft,
+    BottomRight,
+} from "./styles";
 import useFlock from "../stores/useFlock.js";
+import {
+    AiOutlineFullscreen as OpenFullscreen,
+    AiOutlineFullscreenExit as ExitFullscreen,
+} from "react-icons/ai";
+import { useState } from "react";
 
 export default function Overlay() {
+    const [fullscreen, setFullscreen] = useState(false);
     const changeSpeed = useFlock((state) => state.changeSpeed);
     const speed = useFlock((state) => state.speed);
     const behavior = useFlock((state) => state.behavior);
@@ -36,6 +50,24 @@ export default function Overlay() {
                     onChange={(e) => changeSpeed(Number(e.target.value))}
                 />
             </RightMiddle>
+            <BottomLeft>
+                <a href="github.com/dmoore04">GitHub</a>
+            </BottomLeft>
+            <BottomRight>
+                <Option
+                    onClick={() => {
+                        if (document.fullscreenElement) {
+                            document.exitFullscreen();
+                            setFullscreen(false);
+                        } else {
+                            document.getElementById("root").requestFullscreen();
+                            setFullscreen(true);
+                        }
+                    }}
+                >
+                    {fullscreen ? <ExitFullscreen /> : <OpenFullscreen />}
+                </Option>
+            </BottomRight>
         </Container>
     );
 }

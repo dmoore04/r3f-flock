@@ -21,6 +21,20 @@ body {
     background: black;
 }
 
+a {
+    color: white;
+    text-underline-offset: 6px;
+    text-decoration: underline dotted white 2px;
+}
+
+svg {
+    font-size: 32px;
+}
+svg:hover {
+    transition: all 0.2s ease-in-out;
+    transform: scale(1.2);
+}
+
 input[type="range"] {
     display: block;
     -webkit-appearance: none;
