@@ -4,6 +4,8 @@ import { FadeIn, RightMiddle } from "./layout/styles.js";
 import { Suspense, useState } from "react";
 import { createRoot } from "react-dom/client";
 
+window.SC_DISABLE_SPEEDY = true;
+
 function App() {
     const [speed, setSpeed] = useState(1.2);
 
