@@ -51,7 +51,7 @@ export default function Overlay() {
                 />
             </RightMiddle>
             <BottomLeft>
-                <a href="https://github.com/dmoore04">GitHub</a>
+                <a href="https://github.com/dmoore04/r3f-flock">GitHub</a>
             </BottomLeft>
             <BottomRight>
                 <Option
