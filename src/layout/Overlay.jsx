@@ -31,6 +31,7 @@ export default function Overlay() {
                     max="2.4"
                     value={speed}
                     step="0.01"
+                    autoFocus
                     onChange={(e) => changeSpeed(Number(e.target.value))}
                 />
             </RightMiddle>
