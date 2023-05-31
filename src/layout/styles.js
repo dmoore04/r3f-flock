@@ -5,7 +5,7 @@ export const fade = keyframes`
   to { opacity: 0; }
 `;
 
-export const LeftMiddle = styled.div`
+export const RightMiddle = styled.div`
     position: absolute;
     bottom: 50%;
     right: 5vw;

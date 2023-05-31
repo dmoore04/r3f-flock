@@ -1,6 +1,6 @@
 import Flock from "./Flock.jsx";
 import "./style.css";
-import { FadeIn, LeftMiddle } from "./layout/styles.js";
+import { FadeIn, RightMiddle } from "./layout/styles.js";
 import { Suspense, useState } from "react";
 import { createRoot } from "react-dom/client";
 
@@ -11,9 +11,9 @@ function App() {
         <>
             <Suspense fallback={null}>
                 <Flock speed={speed} />
-                {/* <FadeIn /> */}
+                <FadeIn />
             </Suspense>
-            <LeftMiddle>
+            <RightMiddle>
                 <input
                     type="range"
                     min="0.5"
@@ -22,7 +22,7 @@ function App() {
                     step="0.01"
                     onChange={(e) => setSpeed(Number(e.target.value))}
                 />
-            </LeftMiddle>
+            </RightMiddle>
         </>
     );
 }
