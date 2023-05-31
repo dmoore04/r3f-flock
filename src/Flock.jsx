@@ -6,11 +6,12 @@ import PropTypes from "prop-types";
 import { useYuka } from "./ai/useYuka";
 import * as THREE from "three";
 import { Vehicle } from "yuka";
+import useFlock from "./stores/useFlock";
 
 const coneGeometry = new THREE.ConeGeometry(0.1, 0.5, 8).rotateX(Math.PI / 2);
 const normalMaterial = new THREE.MeshNormalMaterial({ flatShading: true });
 
-function Cone({ speed }) {
+function Cone({ speed = 1.2 }) {
     const [ref] = useYuka({
         type: Vehicle,
         name: "vehicle",
@@ -30,7 +31,9 @@ Cone.propTypes = {
     speed: PropTypes.number,
 };
 
-function Flock({ speed = 1.2, count = 200, depth = 60 }) {
+function Flock({ count = 200, depth = 60 }) {
+    const speed = useFlock((state) => state.speed);
+
     return (
         <Canvas
             camera={{

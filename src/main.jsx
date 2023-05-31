@@ -1,30 +1,19 @@
 import Flock from "./Flock.jsx";
 import "./style.css";
-import { RightMiddle } from "./layout/styles";
-import { Suspense, useState } from "react";
+import { Suspense } from "react";
 import { createRoot } from "react-dom/client";
 import Overlay from "./layout/Overlay.jsx";
+import useFlock from "./stores/useFlock.js";
 
 function App() {
-    const [speed, setSpeed] = useState(1.2);
+    const flockCount = useFlock((state) => state.count);
 
     return (
         <>
             <Suspense fallback={null}>
-                <Flock speed={speed} />
+                <Flock count={flockCount} />
             </Suspense>
             <Overlay />
-            <RightMiddle>
-                <span>{speed}</span>
-                <input
-                    type="range"
-                    min="0.5"
-                    max="2.4"
-                    value={speed}
-                    step="0.01"
-                    onChange={(e) => setSpeed(Number(e.target.value))}
-                />
-            </RightMiddle>
         </>
     );
 }

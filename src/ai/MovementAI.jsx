@@ -9,10 +9,13 @@ import {
 import React, { useEffect, useState } from "react";
 import managerContext from "../context/entityManager";
 import { useFrame, useThree } from "@react-three/fiber";
+import useFlock from "../stores/useFlock";
 
 export default function MovementAI({ children }) {
     const [mgr] = useState(() => new EntityManager(), []);
     const [target] = useState(() => new Vehicle(), []);
+    const behavior = useFlock((state) => state.behavior);
+    const nextBehavior = useFlock((state) => state.nextBehavior);
 
     const { viewport } = useThree();
 
@@ -43,13 +46,18 @@ export default function MovementAI({ children }) {
         const target = mgr.entities.find((item) => item.name === "target");
 
         const hasMouse = !matchMedia("(hover: none)").matches;
-        if (hasMouse) {
+
+        if (behavior === "follow" && !hasMouse) {
+            nextBehavior();
+        }
+
+        if (behavior === "follow") {
             target.position.set(
                 (state.mouse.x * viewport.width) / 2,
                 Math.sin(state.clock.elapsedTime) * 0.5,
                 (-state.mouse.y * viewport.height) / 2
             );
-        } else {
+        } else if (behavior === "wave") {
             // fallback wave movement for touch devices
             const x =
                 ((state.clock.elapsedTime * 0.5) % viewport.width) /
