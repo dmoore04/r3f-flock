@@ -1,4 +1,4 @@
-import { TopLeft, Container, RightMiddle, TopRight } from "./styles";
+import { TopLeft, Container, RightMiddle, TopRight, Option } from "./styles";
 import useFlock from "../stores/useFlock.js";
 
 export default function Overlay() {
@@ -6,6 +6,8 @@ export default function Overlay() {
     const speed = useFlock((state) => state.speed);
     const behavior = useFlock((state) => state.behavior);
     const nextBehavior = useFlock((state) => state.nextBehavior);
+    const geometry = useFlock((state) => state.geometry);
+    const nextGeometry = useFlock((state) => state.nextGeometry);
 
     return (
         <Container>
@@ -17,11 +19,10 @@ export default function Overlay() {
                 </h1>
                 <p>Software Developer</p>
             </TopLeft>
-            <TopRight
-                style={{ cursor: "pointer" }}
-                onClick={() => nextBehavior()}
-            >
-                {behavior}
+            <TopRight>
+                <Option onClick={() => nextGeometry()}>{geometry}</Option>
+                <br />
+                <Option onClick={() => nextBehavior()}>{behavior}</Option>
             </TopRight>
             <RightMiddle>
                 <span>{speed}</span>
@@ -30,7 +31,7 @@ export default function Overlay() {
                     min="0.5"
                     max="2.4"
                     value={speed}
-                    step="0.01"
+                    step="0.1"
                     autoFocus
                     onChange={(e) => changeSpeed(Number(e.target.value))}
                 />

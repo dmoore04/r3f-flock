@@ -6,9 +6,8 @@ import PropTypes from "prop-types";
 import { useYuka } from "./ai/useYuka";
 import * as THREE from "three";
 import { Vehicle } from "yuka";
-import useFlock from "./stores/useFlock";
+import useFlock, { geometries } from "./stores/useFlock";
 
-const coneGeometry = new THREE.ConeGeometry(0.1, 0.5, 8).rotateX(Math.PI / 2);
 const normalMaterial = new THREE.MeshNormalMaterial({ flatShading: true });
 
 function Cone({ speed = 1.2 }) {
@@ -24,7 +23,15 @@ function Cone({ speed = 1.2 }) {
         rotation: [Math.random() * Math.PI, 0, Math.random() * Math.PI],
     });
 
-    return <mesh ref={ref} geometry={coneGeometry} material={normalMaterial} />;
+    const geometry = useFlock((state) => state.geometry);
+
+    return (
+        <mesh
+            ref={ref}
+            geometry={geometries[geometry]}
+            material={normalMaterial}
+        />
+    );
 }
 
 Cone.propTypes = {

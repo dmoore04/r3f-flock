@@ -38,4 +38,9 @@ export const TopRight = styled.div`
     position: absolute;
     top: 5vw;
     right: 5vw;
+    text-align: right;
+`;
+
+export const Option = styled.span`
+    cursor: pointer;
 `;
