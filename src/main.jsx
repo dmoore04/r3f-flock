@@ -11,7 +11,7 @@ function App() {
         <>
             <Suspense fallback={null}>
                 <Flock speed={speed} />
-                <FadeIn />
+                {/* <FadeIn /> */}
             </Suspense>
             <LeftMiddle>
                 <input

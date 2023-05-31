@@ -31,7 +31,6 @@ Cone.propTypes = {
 };
 
 function Flock({ speed = 1.2, count = 200, depth = 60 }) {
-    console.log("flock mounted");
     return (
         <Canvas
             camera={{

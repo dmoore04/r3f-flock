@@ -40,7 +40,6 @@ export default function MovementAI({ children }) {
     }, [mgr.entities]);
 
     useFrame((state, delta) => {
-        console.log("running update loop");
         const target = mgr.entities.find((item) => item.name === "target");
 
         const hasMouse = !matchMedia("(hover: none)").matches;
