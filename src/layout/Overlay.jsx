@@ -17,7 +17,12 @@ export default function Overlay() {
                 </h1>
                 <p>Software Developer</p>
             </TopLeft>
-            <TopRight onClick={() => nextBehavior()}>{behavior}</TopRight>
+            <TopRight
+                style={{ cursor: "pointer" }}
+                onClick={() => nextBehavior()}
+            >
+                {behavior}
+            </TopRight>
             <RightMiddle>
                 <span>{speed}</span>
                 <input
