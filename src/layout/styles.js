@@ -1,9 +1,4 @@
-import styled, { keyframes } from "styled-components";
-
-export const fade = keyframes`
-  from { opacity: 1; }
-  to { opacity: 0; }
-`;
+import styled from "styled-components";
 
 export const RightMiddle = styled.div`
     position: absolute;
@@ -16,15 +11,4 @@ export const RightMiddle = styled.div`
     font-size: 12px;
     transform: rotate(-90deg) translate3d(50%, 0, 0);
     transform-origin: 100% 50%;
-`;
-
-export const FadeIn = styled.div`
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    background: black;
-    animation: ${fade} 4s normal forwards ease-in-out;
 `;
