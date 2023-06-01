@@ -2,6 +2,7 @@ import { create } from "zustand";
 import { subscribeWithSelector } from "zustand/middleware";
 import behaviors from "../ai/behaviors";
 import * as THREE from "three";
+import { createContext } from "react";
 
 const behaviorOptions = Object.keys(behaviors);
 
@@ -32,6 +33,7 @@ export default create(
 
                     return { geometry: geometryOptions[nextIndex] };
                 }),
+            managerContext: createContext(),
             speed: 1.2,
             changeSpeed: (newSpeed) => set({ speed: newSpeed }),
             behaviorOptions: behaviorOptions,

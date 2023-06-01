@@ -1,6 +1,6 @@
 import { useRef, useEffect, useState, useContext } from "react";
 import { GameEntity } from "yuka";
-import managerContext from "../context/entityManager";
+import useFlock from "../stores/useFlock";
 
 export function useYuka({
     type = GameEntity,
@@ -11,6 +11,7 @@ export function useYuka({
 }) {
     // This hook makes set-up re-usable
     const ref = useRef();
+    const managerContext = useFlock((state) => state.managerContext);
     const mgr = useContext(managerContext);
     const [entity] = useState(() => new type());
 

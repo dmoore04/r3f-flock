@@ -7,13 +7,13 @@ import {
     WanderBehavior,
 } from "yuka";
 import React, { useEffect, useState } from "react";
-import managerContext from "../context/entityManager";
 import { useFrame, useThree } from "@react-three/fiber";
 import useFlock from "../stores/useFlock";
 import behaviors from "./behaviors";
 
 export default function MovementAI({ children }) {
     const [mgr] = useState(() => new EntityManager(), []);
+    const managerContext = useFlock((state) => state.managerContext);
     const [target] = useState(() => new Vehicle(), []);
     const behavior = useFlock((state) => state.behavior);
     const nextBehavior = useFlock((state) => state.nextBehavior);
