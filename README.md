@@ -1,3 +1,3 @@
-# r3f-flock
-Experimenting with some react-three libraries and yuka.js
+# Flock
+Experimenting with some [react-three](https://github.com/pmndrs) libraries and [Yuka](https://github.com/Mugen87/yuka).
 ![](/preview.png)
