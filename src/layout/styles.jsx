@@ -22,7 +22,7 @@ export const Container = styled.div`
         margin: 0 0 0.05em 0;
         font-family: "JetBrains Mono", monospace;
         font-weight: 400;
-        font-size: min(18vw, 14em);
+        font-size: min(14vw, 10em);
         line-height: 0.85em;
         letter-spacing: -0.1em;
     }
