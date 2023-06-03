@@ -1,4 +1,6 @@
 export default {
+    // These generate new positions for the invisible target
+    // which the Vehicles are following.
     wave: (state, viewport) => {
         const x =
             ((state.clock.elapsedTime * 0.5) % viewport.width) /
