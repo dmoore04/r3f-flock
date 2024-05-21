@@ -26,12 +26,8 @@ export default function Overlay() {
     return (
         <Container>
             <TopLeft>
-                <h1>
-                    DANNY
-                    <br />
-                    MOORE
-                </h1>
-                <p>Software Developer</p>
+                <h1>FLOCK</h1>
+                <p>R3F + Yuka</p>
             </TopLeft>
             <TopRight>
                 <Option onClick={() => nextGeometry()}>{geometry}</Option>
